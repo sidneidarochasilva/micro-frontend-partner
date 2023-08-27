@@ -1,0 +1,52 @@
+<section class="form-container">
+  <h1 *ngIf="type === 'E'" >Parceiro: {{ partner && partner.name }}</h1>
+  <h1 *ngIf="type !== 'E'" > Cadatro de Parceiro</h1>
+  <div class="partner-details">
+    <div class="partner-info">
+    
+      
+      <div class="input-group">
+        <div class="input-field">
+          <label for="name">Nome:</label>
+          <input type="text" name="name" [(ngModel)]="partner.name" #ctrl="ngModel" required class="text-input" />
+        </div>
+        <div class="input-field">
+          <label for="description">Descrição:</label>
+          <textarea name="description" [(ngModel)]="partner.description" #ctrl="ngModel" required class="text-input"></textarea>
+        </div>
+      </div>
+      
+      <div class="input-group">
+        <div class="input-field">
+          <label for="repositoryGit">Repositório Git:</label>
+          <input type="text" name="repositoryGit" [(ngModel)]="partner.repositoryGit" #ctrl="ngModel" required class="text-input" />
+        </div>
+        <div class="input-field">
+          <label for="urlDoc">Documentação:</label>
+          <input type="text" name="urlDoc" [(ngModel)]="partner.urlDoc" #ctrl="ngModel" required class="text-input" />
+        </div>
+      </div>
+
+      <div *ngIf="type === 'E'"  class="input-group">
+        <div class="input-field">
+          <label for="clients">Clientes:</label>
+          <ul class="string-list">
+            <li *ngFor="let client of partner.clients">{{ client }}</li>
+          </ul>
+        </div>
+        <div class="input-field">
+          <label for="projects">Projetos:</label>
+          <ul class="string-list">
+            <li *ngFor="let project of partner.projects">{{ project }}</li>
+          </ul>
+        </div>
+      </div>
+ 
+    
+      <button *ngIf="type === 'E'" type="button" class="save-button" (click)="updatePartner(partner.id,partner)">Salvar</button>
+      <button *ngIf="type === 'C'" type="button" class="save-button" (click)="createPartner(partner)">Criar</button>
+
+    
+    </div>
+  </div>
+</section>
